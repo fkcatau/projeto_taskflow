@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Base</title>
+</head>
+<body>
+<h1>Base</h1>
+<a href="{{url_for('index')}}">início</a><br>
+<a href="{{url_for('criar_atividade')}}">criar atividade</a><br>
+<a href="{{url_for('listar_atividades')}}">listar atividade</a><br>
+<a href="{{url_for('pessoa')}}">pessoa</a>
+
+
+{% block conteudo %}
+{% endblock conteudo %}
+</body>
+</html>
