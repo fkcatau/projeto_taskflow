@@ -1,6 +1,17 @@
-{% extends 'base.html' %}
-{% block conteudo%}
+{% extends "base.html" %}
+{% block title %}Perfil{% endblock %}
 
-<h1>criar pessoa</h1>
+{% block content %}
+<h2>Perfil do Colaborador</h2>
+<p class="subtitle">Informações cadastrais e credenciais técnicas do usuário ativo no sistema:</p>
 
-{% endblock conteudo%}
+<div class="card" style="display: flex; flex-direction: column; gap: 0.75rem;">
+    <p><strong style="color: #38bdf8;">Nome:</strong> {{ usuario.nome }}</p>
+    <p><strong style="color: #38bdf8;">Matrícula:</strong> {{ usuario.matricula }}</p>
+    <p><strong style="color: #38bdf8;">Cargo:</strong> {{ usuario.cargo }}</p>
+    <p><strong style="color: #38bdf8;">Departamento:</strong> {{ usuario.departamento }}</p>
+    <p><strong style="color: #38bdf8;">Especialização:</strong> {{ usuario.especializacao }}</p>
+    <p><strong style="color: #38bdf8;">Registro Profissional:</strong> {{ usuario.registro_professional }}</p>
+    <p><strong style="color: #38bdf8;">Unidade de Alocação:</strong> {{ usuario.unidade }}</p>
+</div>
+{% endblock %}

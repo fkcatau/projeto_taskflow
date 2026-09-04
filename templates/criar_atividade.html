@@ -1,47 +1,51 @@
-{% extends 'base.html' %}
-{% block conteudo%}
+{% extends "base.html" %}
+{% block title %}Cadastrar Atividade{% endblock %}
 
-<form action="" xmlns="http://www.w3.org/1999/html">
-    <label for="nome_atividade">Nome da Atividade:</label>
-    <input id="nome_atividade" type="text" name="nome_atividade" >
-    <br>
-<label name ="data_atividade">Data da Atividade: </label>
-    <input type="date" name="form_data_atividade">
-    <br>
-    <label>
-        <input type="checkbox" name="form_recurso" value="net">Internet
-        <input type="checkbox" name="form_recurso" value="net">celular
-        <input type="checkbox" name="form_recurso" value="net">notebook
-        <input type="checkbox" name="form_recurso" value="net">papel
-        <input type="checkbox" name="form_recurso" value="net">caneta
-    </label>
-    <br>
-    <select name="form_categoria_atividade">
-        <option value="">Selecione a Categoria</option>
-        <option value="esporte">esporte</option>
-        <option value="Cultura">Cultura</option>
-        <option value="educacional">Educacional</option>
-    </select>
-<br>
-<label>
-        Comentario:<br>
-        <textarea rows="10" cols="30"></textarea>
-    </label>
-    <br>
-<button type="submit">Adiconar Dados</button>
-    <button type="reset">Limpar Dados</button>
-    </label>
+{% block content %}
+<h2>Cadastrar Nova Atividade</h2>
+<p class="subtitle">Preencha os campos abaixo para registrar uma tarefa no sistema:</p>
 
-</form>
-{{dados_atividade}}
-{% for atividade in dados_atividade %}
-{{atividade.nome}}<br>
-{{atividade.recursos}}<br>
-{{atividade.data}}<br>
-{{atividade.categoria}}<br>
-{{atividade.descricao}}
+<div class="form-container">
+    <form action="{{ url_for('criar_atividade') }}" method="POST">
 
-{% endfor %}
+        <div class="form-group">
+            <label for="titulo">Título da Atividade:</label>
+            <input type="text" id="titulo" name="titulo" class="form-control" placeholder="Ex: Revisar relatório mensal" required>
+        </div>
 
+        <div class="form-group">
+            <label for="descricao">Descrição:</label>
+            <textarea id="descricao" name="descricao" class="form-control" placeholder="Detalhes da tarefa..." rows="3" required></textarea>
+        </div>
 
-{% endblock conteudo%}
+        <div class="form-group">
+            <label for="prioridade">Prioridade:</label>
+            <select id="prioridade" name="prioridade" class="form-control">
+                <option value="Baixa">Baixa</option>
+                <option value="Média" selected>Média</option>
+                <option value="Alta">Alta</option>
+            </select>
+        </div>
+
+        <!-- Seção de recursos necessários atualizada com as classes escuras -->
+        <div class="form-group">
+            <label>Recursos Necessários:</label>
+            <div class="checkbox-group">
+                <label class="checkbox-label">
+                    <input type="checkbox" name="recursos" value="Computador"> Computador
+                </label>
+                <label class="checkbox-label">
+                    <input type="checkbox" name="recursos" value="Celular"> Celular
+                </label>
+                <label class="checkbox-label">
+                    <input type="checkbox" name="recursos" value="Internet"> Internet
+                </label>
+            </div>
+        </div>
+
+        <button type="submit" class="btn">
+            Salvar Atividade (Cadastrar)
+        </button>
+    </form>
+</div>
+{% endblock %}

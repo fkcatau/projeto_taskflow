@@ -1,7 +1,38 @@
-    {% extends 'base.html' %}
-    {% block conteudo%}
+{% extends "base.html" %}
+{% block title %}Atividades{% endblock %}
 
-    <h1>listar atividades</h1>
+{% block content %}
+<h2>Lista de Atividades Cadastradas</h2>
+<p class="subtitle">Acompanhe abaixo o relatório de tarefas ativas no sistema:</p>
 
+{% if atividades %}
+    {% for atividade in atividades %}
+    <div class="card">
+        <h3>{{ loop.index }}. {{ atividade.titulo }}</h3>
+        <p class="desc">{{ atividade.descricao }}</p>
 
-    {% endblock conteudo%}
+        <div class="badge-group">
+            <span class="badge-label">Prioridade:</span>
+            <span class="badge-priority">{{ atividade.prioridade }}</span>
+        </div>
+
+        <div class="badge-group" style="margin-top: 0.5rem; margin-bottom: 1.25rem;">
+            <span class="badge-label">Recursos Alocados:</span>
+            {% for recurso in atividade.recursos %}
+                <span class="badge-item">{{ recurso }}</span>
+            {% endfor %}
+        </div>
+
+        <!-- Formulário que envia o ID oculto para exclusão imediata -->
+        <form action="{{ url_for('remover_atividade', id_atividade=loop.index0) }}" method="POST" style="display: block; text-align: right;">
+            <button type="submit" class="btn-excluir">
+                Excluir Tarefa
+            </button>
+        </form>
+    </div>
+    {% endfor %}
+{% else %}
+    <p style="color: #64748b; font-style: italic;">Nenhuma atividade cadastrada no momento.</p>
+{% endif %}
+
+{% endblock %}

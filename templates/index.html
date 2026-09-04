@@ -1,7 +1,52 @@
-    {% extends 'base.html' %}
-    {% block conteudo%}
+{% extends "base.html" %}
+{% block title %}Início - Portal TaskFlow{% endblock %}
 
-    <h1>index</h1>
+{% block content %}
+<!-- Seção de Recepção Principal -->
+<div style="margin-bottom: 2.5rem;">
+    <h2>Painel do Colaborador</h2>
+    <p class="subtitle">Bem-vindo ao painel operacional da <strong>TaskFlow Corp</strong>. Sistema autenticado para o usuário Miguel.</p>
+</div>
 
+<!-- Grid de Informações Rápidas -->
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; margin-bottom: 2rem;">
 
-    {% endblock conteudo%}
+    <!-- Card de Status do Sistema -->
+    <div class="card" style="margin-bottom: 0;">
+        <h3 style="color: #38bdf8; font-size: 1.1rem; margin-bottom: 0.75rem;">Status do Painel</h3>
+        <p class="desc">Todos os módulos internos do sistema estão operando normalmente na nuvem.</p>
+        <div class="badge-group" style="margin-top: 1rem;">
+            <span class="badge-item" style="border-color: #22c55e; color: #22c55e; background-color: rgba(34, 197, 94, 0.1); font-weight: bold;">
+                Conectado (Online)
+            </span>
+        </div>
+    </div>
+
+    <!-- Card Informativo do Setor -->
+    <div class="card" style="margin-bottom: 0;">
+        <h3 style="color: #38bdf8; font-size: 1.1rem; margin-bottom: 0.75rem;">Seu Departamento</h3>
+        <p class="desc">Vinculado ao setor <strong>Técnico Agrícola</strong> como operador e gestor de demandas.</p>
+        <div class="badge-group" style="margin-top: 1rem;">
+            <span class="badge-item">Setor Operacional</span>
+        </div>
+    </div>
+
+</div>
+
+<!-- Card de Guia de Navegação -->
+<div class="card">
+    <h3 style="margin-bottom: 0.75rem;">Ações Disponíveis</h3>
+    <p class="desc" style="margin-bottom: 1.25rem;">
+        Selecione uma das opções rápidas abaixo ou utilize a barra de navegação no topo da página para gerenciar o fluxo de atividades:
+    </p>
+
+    <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+        <a href="{{ url_for('listar_atividades') }}" class="btn" style="width: auto; text-decoration: none; padding: 0.5rem 1.25rem; font-size: 0.9rem; text-align: center;">
+            Ver Tarefas Ativas
+        </a>
+        <a href="{{ url_for('criar_atividade') }}" class="btn" style="width: auto; background-color: #1e293b; border: 1px solid #374151; text-decoration: none; padding: 0.5rem 1.25rem; font-size: 0.9rem; text-align: center; color: #e2e8f0;">
+            Cadastrar Nova Demanda
+        </a>
+    </div>
+</div>
+{% endblock %}
