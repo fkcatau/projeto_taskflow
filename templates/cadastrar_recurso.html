@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Cadastrar Novo Recurso</h2>
+<p class="subtitle">Defina uma nova ferramenta ou insumo para utilização na empresa.</p>
+<div class="form-container">
+    <form action="{{ url_for('cadastrar_recurso') }}" method="POST">
+        <div class="form-group">
+            <label for="nome">Nome do Recurso:</label>
+            <input type="text" id="nome" name="nome" class="form-control" placeholder="Ex: Trator John Deere, Drone de Mapeamento, Licença de Software" required>
+        </div>
+        <div class="form-group">
+            <label for="descricao">Descrição / Finalidade:</label>
+            <input type="text" id="descricao" name="descricao" class="form-control" placeholder="Descreva suscintamente as especificações do ativo..." required>
+        </div>
+        <div style="display: flex; gap: 1rem; margin-top: 1rem;">
+            <button type="submit" class="btn" style="width: auto; padding: 0.75rem 2rem;">Salvar Recurso</button>
+            <a href="{{ url_for('gerenciar_recursos') }}" class="btn" style="background-color: #1e293b; color: #e2e8f0; text-decoration: none; text-align: center; width: auto; padding: 0.75rem 2rem; border: 1px solid #374151;">Cancelar</a>
+        </div>
+    </form>
+</div>
+{% endblock %}

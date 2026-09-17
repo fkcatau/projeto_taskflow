@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block content %}
+<div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
+    <div>
+        <h2>Gerenciamento de Tipos</h2>
+        <p class="subtitle">Classificações das tarefas operacionais.</p>
+    </div>
+    <a href="{{ url_for('cadastrar_tipo') }}" class="btn" style="width: auto; text-decoration: none;">+ Novo Tipo</a>
+</div>
+<div class="table-container">
+    {% if tipos %}
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nome do Tipo</th>
+                    <th>Descrição</th>
+                    <th style="text-align: center;">Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for tipo in tipos %}
+                <tr>
+                    <td><strong>{{ tipo.id }}</strong></td>
+                    <td style="color: #f8fafc; font-weight: 600;">{{ tipo.nome }}</td>
+                    <td>{{ tipo.desc }}</td>
+                    <td style="text-align: center;">
+                        <form action="{{ url_for('remover_tipo', id_tipo=tipo.id) }}" method="POST" style="display: inline;">
+                            <button type="submit" class="btn-excluir">Remover</button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <div style="padding: 2rem; color: #64748b; font-style: italic; text-align: center;">
+            Nenhum tipo cadastrado.
+        </div>
+    {% endif %}
+</div>
+{% endblock %}

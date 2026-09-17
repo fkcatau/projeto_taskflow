@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Cadastrar Nova Atividade</h2>
+<p class="subtitle">Insira as especificações da tarefa e vincule os relacionamentos.</p>
+<div class="form-container">
+    <form action="{{ url_for('cadastrar_atividade') }}" method="POST">
+        <div class="form-group">
+            <label for="nome">Nome da Tarefa:</label>
+            <input type="text" id="nome" name="nome" class="form-control" placeholder="Ex: Ajustar configurações do servidor" required>
+        </div>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem;">
+            <div class="form-group">
+                <label for="colaborador_input">Responsável (Pessoa):</label>
+                <input type="text" id="colaborador_input" name="colaborador_nome" class="form-control" list="colaboradores_list" placeholder="Escreva para buscar ou adicione..." required>
+                <datalist id="colaboradores_list">
+                    {% for p in pessoas %}
+                        <option value="{{ p.nome }}"></option>
+                    {% endfor %}
+                </datalist>
+            </div>
+            <div class="form-group">
+                <label for="tipo_id">Tipo de Tarefa:</label>
+                <select id="tipo_id" name="tipo_id" class="form-control" required>
+                    <option value="" disabled selected>Selecione uma categoria...</option>
+                    {% for t in tipos %}
+                        <option value="{{ t.id }}">{{ t.nome }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+        </div>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem;">
+            <div class="form-group">
+                <label for="data">Data de Execução:</label>
+                <input type="date" id="data" name="data" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label for="hora">Hora:</label>
+                <input type="time" id="hora" name="hora" class="form-control" required>
+            </div>
+        </div>
+        <div class="form-group">
+            <label>Recursos Necessários:</label>
+            <div class="checkbox-group">
+                {% for rec in recursos_lista %}
+                <label class="checkbox-label">
+                    <input type="checkbox" name="recursos" value="{{ rec.nome }}"> {{ rec.nome }}
+                </label>
+                {% endfor %}
+            </div>
+        </div>
+        <div style="display: flex; gap: 1rem; margin-top: 1rem;">
+            <button type="submit" class="btn" style="width: auto; padding: 0.75rem 2rem;">Salvar Atividade</button>
+            <a href="{{ url_for('gerenciar_atividades') }}" class="btn" style="background-color: #1e293b; color: #e2e8f0; text-decoration: none; text-align: center; width: auto; padding: 0.75rem 2rem; border: 1px solid #374151;">Cancelar</a>
+        </div>
+    </form>
+</div>
+{% endblock %}

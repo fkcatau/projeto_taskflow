@@ -10,14 +10,12 @@
             margin: 0;
             padding: 0;
         }
-
         body {
             font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
             background-color: #0b0f19;
             color: #e2e8f0;
             line-height: 1.5;
         }
-
         header {
             background-color: #060911;
             color: white;
@@ -25,20 +23,17 @@
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
             border-bottom: 1px solid #1e293b;
         }
-
         header h1 {
             font-size: 1.5rem;
             font-weight: 700;
             margin-bottom: 1rem;
             letter-spacing: -0.025em;
         }
-
         nav {
             display: flex;
             gap: 1.25rem;
             flex-wrap: wrap;
         }
-
         nav a {
             color: #94a3b8;
             text-decoration: none;
@@ -48,12 +43,10 @@
             border-radius: 6px;
             transition: all 0.2s ease;
         }
-
         nav a:hover {
             color: #38bdf8;
             background-color: rgba(56, 189, 248, 0.1);
         }
-
         main {
             padding: 2rem;
             max-width: 850px;
@@ -63,7 +56,6 @@
             border: 1px solid #1e293b;
             box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
         }
-
         h2 {
             color: #f8fafc;
             font-size: 1.75rem;
@@ -71,14 +63,41 @@
             margin-bottom: 0.5rem;
             letter-spacing: -0.025em;
         }
-
         p.subtitle {
             color: #94a3b8;
             font-size: 1rem;
             margin-bottom: 2rem;
         }
-
-        /* Estilos dos Cards de Atividades */
+        .table-container {
+            width: 100%;
+            overflow-x: auto;
+            border: 1px solid #1e293b;
+            border-radius: 8px;
+            background-color: #1f2937;
+            margin-bottom: 2rem;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+            font-size: 0.95rem;
+        }
+        th {
+            background-color: #1e293b;
+            color: #38bdf8;
+            font-weight: 600;
+            padding: 1rem;
+            border-bottom: 2px solid #374151;
+        }
+        td {
+            padding: 1rem;
+            border-bottom: 1px solid #1e293b;
+            color: #cbd5e1;
+            vertical-align: middle;
+        }
+        tr:hover td {
+            background-color: rgba(56, 189, 248, 0.03);
+        }
         .card {
             border: 1px solid #1e293b;
             padding: 1.5rem;
@@ -87,41 +106,22 @@
             background-color: #1f2937;
             transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
         }
-
         .card:hover {
             transform: translateY(-2px);
             border-color: #38bdf8;
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.25);
         }
-
         .card h3 {
             font-size: 1.2rem;
             color: #f8fafc;
             font-weight: 600;
             margin-bottom: 0.5rem;
         }
-
         .card p.desc {
             color: #cbd5e1;
             font-size: 0.95rem;
             margin-bottom: 1rem;
         }
-
-        /* Estilos dos Badges e Recursos */
-        .badge-group {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-            align-items: center;
-            margin-top: 0.75rem;
-            font-size: 0.85rem;
-        }
-
-        .badge-label {
-            font-weight: 600;
-            color: #94a3b8;
-        }
-
         .badge-item {
             background-color: #111827;
             color: #cbd5e1;
@@ -129,41 +129,26 @@
             border-radius: 9999px;
             font-weight: 500;
             border: 1px solid #374151;
+            font-size: 0.85rem;
         }
-
-        .badge-priority {
-            padding: 0.25rem 0.75rem;
-            border-radius: 6px;
-            font-weight: 600;
-            text-transform: uppercase;
-            font-size: 0.8rem;
-            background-color: rgba(2, 132, 199, 0.2);
-            color: #38bdf8;
-            border: 1px solid rgba(56, 189, 248, 0.3);
-        }
-
-        /* Estilos do Formulário */
         .form-container {
-            max-width: 600px;
+            max-width: 100%;
             border: 1px solid #1e293b;
             padding: 2rem;
             border-radius: 12px;
             background-color: #1f2937;
         }
-
         .form-group {
             display: flex;
             flex-direction: column;
             gap: 0.5rem;
             margin-bottom: 1.5rem;
         }
-
         .form-group label {
             font-weight: 600;
             color: #e2e8f0;
             font-size: 0.95rem;
         }
-
         .form-control {
             padding: 0.75rem 1rem;
             border: 1px solid #374151;
@@ -175,24 +160,17 @@
             transition: all 0.2s ease;
             width: 100%;
         }
-
         .form-control:focus {
             background-color: #0b0f19;
             border-color: #38bdf8;
             box-shadow: 0 0 0 4px rgba(56, 189, 248, 0.15);
         }
-
-        textarea.form-control {
-            resize: vertical;
-        }
-
         .checkbox-group {
             display: flex;
             gap: 1.5rem;
             flex-wrap: wrap;
             margin-top: 0.25rem;
         }
-
         .checkbox-label {
             display: flex;
             align-items: center;
@@ -202,14 +180,12 @@
             cursor: pointer;
             user-select: none;
         }
-
         .checkbox-label input[type="checkbox"] {
             width: 18px;
             height: 18px;
             accent-color: #38bdf8;
             cursor: pointer;
         }
-
         .btn {
             padding: 0.75rem 1.5rem;
             background-color: #0284c7;
@@ -223,16 +199,13 @@
             box-shadow: 0 4px 12px rgba(2, 132, 199, 0.4);
             transition: all 0.2s ease;
         }
-
         .btn:hover {
             background-color: #0369a1;
             box-shadow: 0 6px 20px rgba(2, 132, 199, 0.6);
         }
-
         .btn:active {
             transform: scale(0.98);
         }
-
         footer {
             text-align: center;
             padding: 2.5rem;
@@ -240,28 +213,44 @@
             font-size: 0.875rem;
             margin-top: 4px;
         }
+        .btn-excluir {
+            padding: 0.4rem 1rem;
+            background-color: rgba(239, 68, 68, 0.15);
+            color: #f87171;
+            border: 1px solid rgba(239, 68, 68, 0.3);
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        .btn-excluir:hover {
+            background-color: #ef4444;
+            color: white;
+            box-shadow: 0 4px 12px rgba(239, 68, 68, 0.4);
+        }
+        .btn-excluir:active {
+            transform: scale(0.96);
+        }
     </style>
 </head>
 <body>
-
 <header>
     <h1>TaskFlow Corp | Gestão Interna</h1>
     <nav>
         <a href="{{ url_for('index') }}">Início</a>
-        <a href="{{ url_for('criar_atividade') }}">Criar Atividade</a>
-        <a href="{{ url_for('listar_atividades') }}">Listar Atividades</a>
-        <a href="{{ url_for('pessoa') }}">Perfil Colaborador</a>
+        <a href="{{ url_for('gerenciar_atividades') }}">Gerenciar Atividades</a>
+        <a href="{{ url_for('gerenciar_pessoas') }}">Gerenciar Pessoas</a>
+        <a href="{{ url_for('gerenciar_tipos') }}">Gerenciar Tipos</a>
+        <a href="{{ url_for('gerenciar_recursos') }}">Gerenciar Recursos</a>
     </nav>
 </header>
-
 <main>
     {% block content %}
     {% endblock %}
 </main>
-
 <footer>
     <p>&copy; 2026 TaskFlow Corp - Painel Administrativo do Colaborador</p>
 </footer>
-
 </body>
 </html>

@@ -1,17 +1,44 @@
 {% extends "base.html" %}
-{% block title %}Perfil{% endblock %}
-
 {% block content %}
-<h2>Perfil do Colaborador</h2>
-<p class="subtitle">Informações cadastrais e credenciais técnicas do usuário ativo no sistema:</p>
-
-<div class="card" style="display: flex; flex-direction: column; gap: 0.75rem;">
-    <p><strong style="color: #38bdf8;">Nome:</strong> {{ usuario.nome }}</p>
-    <p><strong style="color: #38bdf8;">Matrícula:</strong> {{ usuario.matricula }}</p>
-    <p><strong style="color: #38bdf8;">Cargo:</strong> {{ usuario.cargo }}</p>
-    <p><strong style="color: #38bdf8;">Departamento:</strong> {{ usuario.departamento }}</p>
-    <p><strong style="color: #38bdf8;">Especialização:</strong> {{ usuario.especializacao }}</p>
-    <p><strong style="color: #38bdf8;">Registro Profissional:</strong> {{ usuario.registro_professional }}</p>
-    <p><strong style="color: #38bdf8;">Unidade de Alocação:</strong> {{ usuario.unidade }}</p>
+<div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
+    <div>
+        <h2>Gerenciamento de Equipe / Pessoas</h2>
+        <p class="subtitle">Acompanhe a lista de colaboradores.</p>
+    </div>
+    <a href="{{ url_for('cadastrar_pessoa') }}" class="btn" style="width: auto; text-decoration: none;">+ Novo Colaborador</a>
+</div>
+<div class="table-container">
+    {% if pessoas %}
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nome Completo</th>
+                    <th>E-mail</th>
+                    <th>Data de Nascimento</th>
+                    <th style="text-align: center;">Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for pessoa in pessoas %}
+                <tr>
+                    <td><strong>{{ pessoa.id }}</strong></td>
+                    <td style="color: #f8fafc; font-weight: 600;">{{ pessoa.nome }}</td>
+                    <td><span class="badge-item">{{ pessoa.email }}</span></td>
+                    <td>{{ pessoa.data_nascimento }}</td>
+                    <td style="text-align: center;">
+                        <form action="{{ url_for('remover_pessoa', id_pessoa=pessoa.id) }}" method="POST" style="display: inline;">
+                            <button type="submit" class="btn-excluir">Remover</button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <div style="padding: 2rem; color: #64748b; font-style: italic; text-align: center;">
+            Nenhum colaborador registrado.
+        </div>
+    {% endif %}
 </div>
 {% endblock %}

@@ -1,51 +1,48 @@
 {% extends "base.html" %}
-{% block title %}Cadastrar Atividade{% endblock %}
-
 {% block content %}
-<h2>Cadastrar Nova Atividade</h2>
-<p class="subtitle">Preencha os campos abaixo para registrar uma tarefa no sistema:</p>
-
-<div class="form-container">
-    <form action="{{ url_for('criar_atividade') }}" method="POST">
-
-        <div class="form-group">
-            <label for="titulo">Título da Atividade:</label>
-            <input type="text" id="titulo" name="titulo" class="form-control" placeholder="Ex: Revisar relatório mensal" required>
+<div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
+    <div>
+        <h2>Gerenciamento de Atividades</h2>
+        <p class="subtitle">Lista das tarefas ativas da equipe.</p>
+    </div>
+    <a href="{{ url_for('cadastrar_atividade') }}" class="btn" style="width: auto; text-decoration: none;">+ Nova Atividade</a>
+</div>
+<div class="table-container">
+    {% if atividades %}
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nome da Tarefa</th>
+                    <th>Responsável</th>
+                    <th>Tipo</th>
+                    <th>Data / Hora</th>
+                    <th>Recursos</th>
+                    <th style="text-align: center;">Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for atividade in atividades %}
+                <tr>
+                    <td><strong>{{ atividade.id }}</strong></td>
+                    <td style="color: #f8fafc; font-weight: 600;">{{ atividade.nome }}</td>
+                    <td><span class="badge-item" style="color: #38bdf8;">{{ atividade.responsavel }}</span></td>
+                    <td>{{ atividade.tipo }}</td>
+                    <td>{{ atividade.data }} às {{ atividade.hora }}</td>
+                    <td>{{ atividade.recurso }}</td>
+                    <td style="text-align: center;">
+                        <form action="{{ url_for('remover_atividade', id_atividade=atividade.id) }}" method="POST" style="display: inline;">
+                            <button type="submit" class="btn-excluir">Excluir</button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <div style="padding: 2rem; color: #64748b; font-style: italic; text-align: center;">
+            Nenhuma atividade cadastrada.
         </div>
-
-        <div class="form-group">
-            <label for="descricao">Descrição:</label>
-            <textarea id="descricao" name="descricao" class="form-control" placeholder="Detalhes da tarefa..." rows="3" required></textarea>
-        </div>
-
-        <div class="form-group">
-            <label for="prioridade">Prioridade:</label>
-            <select id="prioridade" name="prioridade" class="form-control">
-                <option value="Baixa">Baixa</option>
-                <option value="Média" selected>Média</option>
-                <option value="Alta">Alta</option>
-            </select>
-        </div>
-
-        <!-- Seção de recursos necessários atualizada com as classes escuras -->
-        <div class="form-group">
-            <label>Recursos Necessários:</label>
-            <div class="checkbox-group">
-                <label class="checkbox-label">
-                    <input type="checkbox" name="recursos" value="Computador"> Computador
-                </label>
-                <label class="checkbox-label">
-                    <input type="checkbox" name="recursos" value="Celular"> Celular
-                </label>
-                <label class="checkbox-label">
-                    <input type="checkbox" name="recursos" value="Internet"> Internet
-                </label>
-            </div>
-        </div>
-
-        <button type="submit" class="btn">
-            Salvar Atividade (Cadastrar)
-        </button>
-    </form>
+    {% endif %}
 </div>
 {% endblock %}
